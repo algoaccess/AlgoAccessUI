@@ -16,6 +16,7 @@
 		5781E3631BB2722700DD25F5 /* AlgoAccessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E3621BB2722700DD25F5 /* AlgoAccessUITests.swift */; };
 		5781E36E1BB2725300DD25F5 /* AATextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E36D1BB2725300DD25F5 /* AATextField.swift */; };
 		5781E3701BB2729400DD25F5 /* AAFloatingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E36F1BB2729400DD25F5 /* AAFloatingLabel.swift */; };
+		5781E37F1BB2932800DD25F5 /* AATextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781E37E1BB2932800DD25F5 /* AATextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		5781E3621BB2722700DD25F5 /* AlgoAccessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoAccessUITests.swift; sourceTree = "<group>"; };
 		5781E36D1BB2725300DD25F5 /* AATextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AATextField.swift; sourceTree = "<group>"; };
 		5781E36F1BB2729400DD25F5 /* AAFloatingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AAFloatingLabel.swift; sourceTree = "<group>"; };
+		5781E37E1BB2932800DD25F5 /* AATextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AATextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			children = (
 				5781E36D1BB2725300DD25F5 /* AATextField.swift */,
 				5781E36F1BB2729400DD25F5 /* AAFloatingLabel.swift */,
+				5781E37E1BB2932800DD25F5 /* AATextView.swift */,
 			);
 			name = "UI Elements";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5781E34F1BB2722700DD25F5 /* ViewController.swift in Sources */,
+				5781E37F1BB2932800DD25F5 /* AATextView.swift in Sources */,
 				5781E3701BB2729400DD25F5 /* AAFloatingLabel.swift in Sources */,
 				5781E34D1BB2722700DD25F5 /* AlgoAccessUI.xcdatamodeld in Sources */,
 				5781E34A1BB2722700DD25F5 /* AppDelegate.swift in Sources */,

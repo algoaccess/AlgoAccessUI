@@ -34,6 +34,12 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGG-bv-n3X" customClass="AATextView" customModule="AlgoAccessUI" customModuleProvider="target">
+                                <rect key="frame" x="150" y="304" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,6 +59,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="thisTextView" destination="MGG-bv-n3X" id="NlK-wW-fo3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

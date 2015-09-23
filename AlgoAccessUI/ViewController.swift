@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var thisTextView: AATextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        thisTextView.setPlaceholderText("Text view placeholder")
     }
 
     override func didReceiveMemoryWarning() {
