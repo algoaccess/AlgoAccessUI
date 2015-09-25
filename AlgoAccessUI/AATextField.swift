@@ -9,6 +9,17 @@
 import Foundation
 import UIKit
 
+enum UNIT_TYPE: String {
+    case TYPE_EMPTY = " "
+    case TYPE_MM = "MM"
+    case TYPE_CM = "CM"
+    case TYPE_DEG = "˚C"
+    
+    init(){
+        self = TYPE_EMPTY
+    }
+}
+
 class AATextField: UITextField {
     
     var floatingLabel: UILabel!
@@ -33,6 +44,12 @@ class AATextField: UITextField {
     
     var highBorder = false 
     
+    var isRequired = false
+    
+    var rightViewLabel: UILabel!
+    var isRequiredLabel: UILabel!
+    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,7 +80,19 @@ class AATextField: UITextField {
         floatingLabel = UILabel()
         floatingLabel.alpha = 0.0
         
-        self.addSubview(floatingLabel)
+        isRequiredLabel = UILabel()
+        isRequiredLabel.alpha = 1
+        
+        rightViewLabel = UILabel()
+        rightViewLabel.alpha = 0.0
+        
+        
+        addSubview(floatingLabel)
+        addSubview(isRequiredLabel)
+        addSubview(rightViewLabel)
+        
+        isRequiredLabel.font = defaultFloatingLabelFont()
+        isRequiredLabel.textColor = UIColor.greenColor()
         
         floatingLabelTextFont = defaultFloatingLabelFont()
         
@@ -86,6 +115,28 @@ class AATextField: UITextField {
         placeholderXPadding = 1
     }
     
+    func setupTextField(isRequired: Bool, rightView: UNIT_TYPE){
+        
+        if isRequired {
+            isRequiredLabel.text = "Required"
+        }else{
+            isRequiredLabel.text = ""
+        }
+        
+        self.setNeedsLayout()
+        
+        if rightView != UNIT_TYPE.TYPE_EMPTY {
+            rightViewLabel.alpha = 1
+            rightViewLabel.text = rightView.rawValue
+            
+           
+        }
+        
+        setNeedsLayout()
+
+    }
+    
+    
     
     override func layoutSubviews() {
     
@@ -96,6 +147,17 @@ class AATextField: UITextField {
         var floatingLabelSize = floatingLabel.sizeThatFits(floatingLabel.superview!.bounds.size)
         
         floatingLabel.frame = CGRectMake(floatingLabel.frame.origin.x, floatingLabel.frame.origin.y, floatingLabelSize.width, floatingLabelSize.height)
+        
+        var isRequiredLabelSize = isRequiredLabel.sizeThatFits(isRequiredLabel.superview!.bounds.size)
+        
+        println("isRequiredLabelSIze \(isRequiredLabelSize)")
+        
+        isRequiredLabel.frame = CGRectMake(isRequiredLabel.frame.origin.x ,  isRequiredLabel.frame.origin.y, isRequiredLabelSize.width, isRequiredLabelSize.height)
+        
+        isRequiredLabel.textAlignment = NSTextAlignment.Right
+        isRequiredLabel.textColor = UIColor.grayColor()
+        
+        println("isRequiredLabel \(isRequiredLabel.text)")
         
         var firstResponder = self.isFirstResponder()
         
@@ -165,6 +227,8 @@ class AATextField: UITextField {
         }
         
         floatingLabel.frame = CGRectMake(orginX + floatingLabelXPadding, floatingLabel.frame.origin.y, floatingLabel.frame.size.width, floatingLabel.frame.size.height)
+        
+        isRequiredLabel.frame = CGRectMake(orginX + self.frame.width - 60, textRect.origin.y , floatingLabel.frame.size.width, floatingLabel.frame.size.height)
     }
     
     func hideFloatingLabel(animated: Bool){

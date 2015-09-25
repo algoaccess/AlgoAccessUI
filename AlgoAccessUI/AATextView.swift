@@ -66,7 +66,7 @@ class AATextView: UITextView {
         
         startingTextContainerInsetTop = self.textContainerInset.top
         floatingLabelShouldLockToTop = true
-        self.textContainer.lineFragmentPadding = 0
+        self.textContainer.lineFragmentPadding = 7
         
         placeholderLabel = UILabel(frame: self.frame)
         
@@ -164,6 +164,13 @@ class AATextView: UITextView {
     func colorSchemeSetup(){
         
         updateFloatingLabelTextColor(UIColor.blueColor())
+        
+        var borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+        
+        
+        self.layer.borderColor = borderColor.CGColor
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 5.0
     }
     
     func updateFloatingLabelTextColor(color: UIColor){
