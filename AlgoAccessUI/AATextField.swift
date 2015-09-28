@@ -64,7 +64,7 @@ class AATextField: UITextField {
         
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.layer.cornerRadius = 5
@@ -144,31 +144,31 @@ class AATextField: UITextField {
         
         updateOriginForTextAlignment()
         
-        var floatingLabelSize = floatingLabel.sizeThatFits(floatingLabel.superview!.bounds.size)
+        let floatingLabelSize = floatingLabel.sizeThatFits(floatingLabel.superview!.bounds.size)
         
         floatingLabel.frame = CGRectMake(floatingLabel.frame.origin.x, floatingLabel.frame.origin.y, floatingLabelSize.width, floatingLabelSize.height)
         
-        var isRequiredLabelSize = isRequiredLabel.sizeThatFits(isRequiredLabel.superview!.bounds.size)
+        let isRequiredLabelSize = isRequiredLabel.sizeThatFits(isRequiredLabel.superview!.bounds.size)
         
-        println("isRequiredLabelSIze \(isRequiredLabelSize)")
+        print("isRequiredLabelSIze \(isRequiredLabelSize)", terminator: "")
         
         isRequiredLabel.frame = CGRectMake(isRequiredLabel.frame.origin.x ,  isRequiredLabel.frame.origin.y, isRequiredLabelSize.width, isRequiredLabelSize.height)
         
         isRequiredLabel.textAlignment = NSTextAlignment.Right
         isRequiredLabel.textColor = UIColor.grayColor()
         
-        println("isRequiredLabel \(isRequiredLabel.text)")
+        print("isRequiredLabel \(isRequiredLabel.text)")
         
-        var firstResponder = self.isFirstResponder()
+        let firstResponder = self.isFirstResponder()
         
-        if firstResponder && count(self.text) > 0 {
+        if firstResponder && self.text?.characters.count > 0 {
             floatingLabel.textColor = floatingLabelTextColor
         }else {
             floatingLabel.textColor = UIColor.grayColor()
         }
         
      
-        if (count(self.text) == 0 ) {
+        if (self.text?.characters.count == 0 ) {
             
             hideFloatingLabel(firstResponder)
         }else {
@@ -199,20 +199,20 @@ class AATextField: UITextField {
         var textFieldFont = self.font
         
         if self.attributedPlaceholder != nil && self.attributedPlaceholder?.length > 0 {
-            textFieldFont = self.attributedPlaceholder!.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
+            textFieldFont = self.attributedPlaceholder!.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as? UIFont
         }
         
         if self.attributedText != nil && self.attributedText?.length > 0 {
-            textFieldFont = self.attributedText?.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
+            textFieldFont = self.attributedText?.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as? UIFont
         }
         
-        return UIFont(name: textFieldFont.fontName, size: textFieldFont.pointSize * 0.7)!
+        return UIFont(name: textFieldFont!.fontName, size: textFieldFont!.pointSize * 0.7)!
     }
 
     
     func updateOriginForTextAlignment(){
         
-        var textRect = self.textRectForBounds(self.bounds)
+        let textRect = self.textRectForBounds(self.bounds)
         
         var orginX = textRect.origin.x
         
@@ -254,7 +254,7 @@ class AATextField: UITextField {
         
         if animated || animateEvenIfNotFirstResponder == true {
             
-            UIView.animateWithDuration(floatingLabelShowAnimationDuration, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            UIView.animateWithDuration(floatingLabelShowAnimationDuration, delay: 0.0, options: [UIViewAnimationOptions.BeginFromCurrentState, UIViewAnimationOptions.CurveEaseOut], animations: { () -> Void in
                 
                 self.floatingLabel.alpha = 1.0
                 self.floatingLabel.frame = CGRectMake(self.floatingLabel.frame.origin.x, self.placeholderYPadding, self.floatingLabel.frame.size.width, self.floatingLabel.frame.size.height)

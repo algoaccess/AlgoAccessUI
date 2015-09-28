@@ -37,7 +37,10 @@ class AATextView: UITextView {
     var placeholderYPadding: CGFloat!
     var placeholderXPadding: CGFloat!
     
-    required init(coder aDecoder: NSCoder) {
+
+
+    required init?(coder aDecoder: NSCoder) {
+
         super.init(coder: aDecoder)
         
         self.layer.cornerRadius = 5
@@ -121,27 +124,27 @@ class AATextView: UITextView {
         
         adjustTextContainerInsetTop()
         
-        var floatingLabelSize = floatingLabel.sizeThatFits(floatingLabel.superview!.bounds.size)
+        let floatingLabelSize = floatingLabel.sizeThatFits(floatingLabel.superview!.bounds.size)
         
         floatingLabel.frame = CGRectMake(floatingLabel.frame.origin.x, floatingLabel.frame.origin.y, floatingLabelSize.width, floatingLabelSize.height)
         
-        var placeholderLabelSize = placeholderLabel.sizeThatFits(placeholderLabel.superview!.bounds.size)
+        let placeholderLabelSize = placeholderLabel.sizeThatFits(placeholderLabel.superview!.bounds.size)
         
-        placeholderLabel.alpha = count(self.text) > 0 ? 0.0 : 1.0
+        placeholderLabel.alpha = self.text.characters.count > 0 ? 0.0 : 1.0
         placeholderLabel.frame = CGRectMake(textRect().origin.x, textRect().origin.y, placeholderLabelSize.width, placeholderLabelSize.height)
         
         updateOriginForTextAlignment()
         
-        var firstResponder = self.isFirstResponder()
+        let firstResponder = self.isFirstResponder()
         
-        if firstResponder && count(self.text) > 0 {
+        if firstResponder && self.text.characters.count > 0 {
             floatingLabel.textColor = floatingLabelTextColor
         }else {
             floatingLabel.textColor = UIColor.grayColor()
         }
         
         
-        if (count(self.text) == 0 ) {
+        if self.text.characters.count == 0  {
             
             hideFloatingLabel(firstResponder)
         }else {
@@ -165,7 +168,7 @@ class AATextView: UITextView {
         
         updateFloatingLabelTextColor(UIColor.blueColor())
         
-        var borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+        let borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         
         
         self.layer.borderColor = borderColor.CGColor
@@ -198,7 +201,7 @@ class AATextView: UITextView {
         
         var textFieldFont = placeholderLabel.font
         
-        if self.placeholderLabel.attributedText != nil && self.placeholderLabel.attributedText.length > 0 {
+        if self.placeholderLabel.attributedText != nil && self.placeholderLabel.attributedText!.length > 0 {
             textFieldFont = self.placeholderLabel.attributedText!.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
         }
         
@@ -254,7 +257,7 @@ class AATextView: UITextView {
         
         if animated || animateEvenIfNotFirstResponder == true {
             
-            UIView.animateWithDuration(floatingLabelShowAnimationDuration, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState | UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            UIView.animateWithDuration(floatingLabelShowAnimationDuration, delay: 0.0, options: [UIViewAnimationOptions.BeginFromCurrentState ,UIViewAnimationOptions.CurveEaseOut], animations: { () -> Void in
                 
                 self.floatingLabel.alpha = 1.0
                 self.floatingLabel.frame = CGRectMake(self.floatingLabel.frame.origin.x, self.placeholderYPadding, self.floatingLabel.frame.size.width, self.floatingLabel.frame.size.height)
